@@ -1,0 +1,127 @@
+@green:#00a854;
+@blue:#5698d6;
+@lightGreen:#ebf8f2;
+@yellow:#ffbf00;
+
+label{display: inline-block;line-height: 36px;}
+input[disabled],button[disabled]{opacity:0.5;}
+input,textarea,button{border:none; outline: none; transition:all 0.2s;}
+input,textarea,button{ border:1px solid #f1f1f1; border-radius: 4px; line-height: 36px; height:36px; text-indent: 10px; width:100%;}
+textarea{height:120px !important; line-height: 24px;}
+input:hover,textarea:hover{border:1px solid @green ;}
+input[type=text]:focus,input[type=password]:focus,textarea:focus{border:1px solid @green ; box-shadow: 0 0 10px 1px #a4c4b4;}
+input[type=button],button{text-indent: 0;}
+input[type=checkbox],input[type=radio]{width:auto;}
+.border-button{ width:auto; min-width: 100px; padding:0 30px; background:none; color:#666; border:1px solid #e4e4e4;}
+.border-button:hover{border:1px solid @green; color:@green;}
+.border-button:active{background:@green; color:#fff;}
+
+.green-button{width:auto; min-width: 100px; padding:0 30px; background:@green; color:#Fff; border:1px solid @green;}
+.green-button:hover{background:#Fff; color:@green;}
+.green-button:active{}
+
+.yellow-button{width:auto; min-width: 100px; padding:0 30px; background:@yellow; color:#Fff; border:1px solid @yellow;}
+.yellow-button:hover{background:#Fff; color:@yellow; border:1px solid @yellow;}
+.yellow-button:active{}
+
+.link-active{ border:1px solid #cfefdf; border-radius:4px; background:#ebf8f2; }
+
+.button-wrapper{padding:20px 0; text-align: center;}
+.table-wrapper{
+  border-radius: 4px; border:1px solid #f1f1f1; overflow: hidden; margin-bottom: 40px;
+  table{
+    background:#fff; border-collapse: collapse;text-align: center; width:100%;
+    tr:nth-of-type(even){background:#f9f9f9; }
+    td{
+      height:32px; overflow: hidden; padding:6px 10px; min-width: 100px;
+    }
+    thead{
+      background:@lightGreen;  border-radius: 2px; line-height: 36px;
+    }
+  }
+}
+.article-text{max-width: 200px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin:0 auto;}
+td>label{width:100%; height:100%;}
+
+a:hover{color:inherit; text-decoration: underline;}
+.width-limit{width:80%; margin:0 auto; min-width: 1200px;}
+
+.context{
+  border-radius: 2px; border:1px solid #f1f1f1; padding:30px; background:#Fff;
+}
+
+.block{
+  border:1px solid #f1f1f1; border-radius: 8px; background:#Fff; overflow: hidden; margin-bottom: 30px;
+  >.title-bar{ line-height: 36px;background:@lightGreen; text-indent: 10px;}
+  >.content{padding:20px;}
+}
+
+.input-line{
+  display: flex; padding:12px 0px; line-height: 36px;
+  .input-title{flex:0 120px; flex-shrink: 0; text-align: right; }
+  .input-content{flex:1;padding-left: 20px;}
+}
+
+.choose-icon{
+  .icon-wrapper{
+    display: inline-block; width:80px; height:80px; text-align: center; padding:10px; line-height: 60px;
+    svg,.iconfont{width:100%; height:100%;}
+    .iconfont{color:@blue; font-size: 28px;}
+  }
+}
+
+.fl{float:left;}
+.fr{float:right;}
+.clearfix:after{display: block; content:'';clear:both;}
+
+span.link{color:@blue; font-size: 12px; cursor:pointer;}
+span.link:hover{text-decoration: underline;}
+span.link.iconfont{font-size: 16px; display: inline-block; padding:0 2px;}
+span.link.iconfont:hover{transform:scale(1.2,1.2); text-decoration: none;}
+
+span.disable{opacity:0.5;}
+
+
+.loading{
+  text-align: center;
+  .iconfont{color:inherit; display: inline-block; animation:rotateInfinite 1s linear infinite; padding-bottom: 3px;}
+}
+
+
+@iosCubic:cubic-bezier(0.19, 1, 0.22, 1);
+@milkCubic:cubic-bezier(.55,0,.1,1);
+
+.notice-down-enter-active,.notice-down-leave{transform:translate3d(0,0,0);}
+.notice-down-enter,.notice-down-leave-active{transform:translate3d(0,-150%,0);}
+.notice-down-enter-active,.notice-down-leave-active{transition:all 0.5s @iosCubic;}
+
+.slide-enter{opacity:0; transform:translate3d(-100px,0,0);}
+.slide-leave-to{opacity:0;transform:translate3d(100px,0,0);}
+.slide-leave-active,.slide-enter-active{transition:all 0.5s @milkCubic; position:absolute; width:100%;}
+
+.list-complete-item {
+  transition: all 1s;
+
+}
+.list-complete-enter
+  /* .list-complete-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+  transform: translate3d(-30px,0,0);
+}
+.list-complete-leave-to{opacity:0;transform:translate3d(30px,0,0);}
+//.list-complete-leave-active {
+//  position: absolute;
+//}
+
+.fade-enter,.fade-leave-to{opacity:0;}
+.fade-enter-active,.fade-leave-active{transition:all 0.5s @milkCubic;}
+
+
+@keyframes rotateInfinite {
+  0%{
+    transform:rotateZ(0deg);
+  }
+  100%{
+    transform:rotateZ(360deg);
+  }
+}
