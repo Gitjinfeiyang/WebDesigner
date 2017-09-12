@@ -83,7 +83,6 @@
           td.time{width:20%;}
           td.contact{width:20%;}
           td.content{width:60%;}
-          thead{background:@lightGreen; color:#666;}
           tbody{
             tr:nth-of-type(even){background:#f8f8f8;}
           }

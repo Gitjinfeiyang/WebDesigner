@@ -224,4 +224,7 @@ overflow: auto;
 }
 }
 
+
+  .icon-wrapper{border:1px solid #fff; transition:all 0.3s;}
+
 </style>

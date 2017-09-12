@@ -3,6 +3,14 @@
   <div class="router-view-wrapper" v-if="templateCode.length>0">
     <router-view></router-view>
   </div>
+  <transition name="fade">
+    <div class="no-data-notice" v-if="templateCode.length<=0">
+      <div class="loading">
+        <i class="iconfont">&#xe703;</i>
+      </div>
+      <p class="text">加载中...</p>
+    </div>
+  </transition>
 </div>
 </template>
 
@@ -60,5 +68,16 @@ import {API} from './assets/getData';
 </script>
 
 <style scoped lang="less">
+  @import './assets/phone';
+
   .router-view-wrapper{padding-bottom: 2rem;}
+  .no-data-notice{
+    width:100%; height:100%; background:#fff; text-align: center; padding-top:10rem; position:absolute; top:0; left:0;
+    .loading{
+      height:1.4rem; line-height: 1.4rem;
+      .iconfont{font-size: 1rem; padding-bottom: 4px;}
+    }
+    .text{font-size: 0.512rem;
+      line-height:1rem;}
+  }
 </style>

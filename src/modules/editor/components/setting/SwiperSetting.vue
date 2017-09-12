@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="button-wrapper">
-        <loading-button :clickHandler="upgradeSwiper">保存</loading-button>
+        <loading-button class="loading-button" :clickHandler="upgradeSwiper">保存</loading-button>
         <input type="button" class="border-button" value="重置" @click="resetPhoto"/>
       </div>
     </div>
@@ -253,5 +253,10 @@
       height: 40px;
       vertical-align: middle;
     }
+  }
+
+  .button-wrapper{
+    text-align: center;
+    .loading-button{display: inline-block;}
   }
 </style>

@@ -1,1 +1,23 @@
 @blue:#5698d6;
+
+@iosCubic:cubic-bezier(0.19, 1, 0.22, 1);
+@milkCubic:cubic-bezier(.55,0,.1,1);
+
+
+.loading{
+  text-align: center;
+  .iconfont{color:inherit; display: inline-block; animation:rotateInfinite 0.5s linear infinite;}
+}
+
+.fade-enter,.fade-leave-to{opacity:0;}
+.fade-enter-active,.fade-leave-active{transition:all 0.5s @milkCubic;}
+
+
+@keyframes rotateInfinite {
+  0%{
+    transform:rotateZ(0deg);
+  }
+  100%{
+    transform:rotateZ(360deg);
+  }
+}

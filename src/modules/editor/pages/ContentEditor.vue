@@ -68,10 +68,9 @@
         this.$store.state.templateCode=this.templateId=this.$route.params.id;
         this.getIndexResource()
     },
-//    beforeDestroy(){
-//      this.$store.state.editorPosition={};
-//      this.$store.state.componentSelector={};
-//    },
+    beforeDestroy(){
+      this.$store.dispatch('initEditor')
+    },
     computed:{
       transformCss:{
         get:function(){

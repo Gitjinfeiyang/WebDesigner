@@ -3,7 +3,7 @@
     <div class="nav-top">
       <div class="width-limit">
         <div class="nav-left">
-          <router-link to="/user/info"  class="web-font">简介 琴棋书画不会，洗衣做饭嫌累</router-link>
+          <router-link to="/user/info"  class="web-font">简介</router-link>
           <!--<router-link to="/user/contenteditor/template_1">设置</router-link>-->
           <router-link to="/user/message">留言板</router-link>
         </div>

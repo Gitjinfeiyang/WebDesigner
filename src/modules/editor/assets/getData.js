@@ -182,7 +182,7 @@ class Api {
 
 
   getErweima(userId,templateCode,type=''){
-    let baseUrl=`http://10.10.71.181:8080/modules/phone.html#/home?userId=${userId}`;
+    let baseUrl=`http://10.10.70.121:8080/modules/phone.html#/home?userId=${userId}`;
     if(type=='view'){
       baseUrl+=`&template=${templateCode}&type=${type}`
     }

@@ -12,6 +12,7 @@ const MUTATIONS={
   POSITION_EDITOR:'position_editor',
   NOTICE:'notice',
   RELOAD:'reload',
+  INIT_EDITOR:'init_editor',
 };
 
 let noticeTimeout={};
@@ -76,6 +77,15 @@ const store=new Vuex.Store({
     [MUTATIONS.RELOAD](state,reloadData){
       state.reload++;
       state.reloadData=reloadData;
+    },
+    [MUTATIONS.INIT_EDITOR](state){
+      state.editorPosition={ //编辑器的位置信息
+        lineTop:{},
+        lineBottom:{},
+        lineLeft:{},
+        lineRight:{},
+      };
+      state.componentSelected={};
     }
 
   },
@@ -96,6 +106,10 @@ const store=new Vuex.Store({
 
     reloadIndex(context,reloadData={}){
       context.commit(MUTATIONS.RELOAD,reloadData);
+    },
+
+    initEditor(context){
+      context.commit(MUTATIONS.INIT_EDITOR);
     }
   }
 });

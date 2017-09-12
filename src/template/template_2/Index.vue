@@ -43,10 +43,10 @@
 </script>
 
 <style lang="less">
-  @button1top:3rem;
-  @button2top:@button1top+6rem;
-  @button3top:@button2top+7rem;
-  @button4top:@button3top+6rem;
+  @button1top:12%;
+  @button2top:@button1top+16%;
+  @button3top:@button2top+24%;
+  @button4top:@button3top+16%;
   .index{
 
     >.button-wrapper{
@@ -58,16 +58,16 @@
           font-size: 0.8rem; color:#fff;}
       }
       .button-1{
-        position:absolute; top:@button1top; right:2rem;
+        position:absolute; top:@button1top; right:10%;
       }
       .button-2{
-        position:absolute; top:@button2top; right:7rem;
+        position:absolute; top:@button2top; right:40%;
       }
       .button-3{
-        position:absolute; top:@button3top; right:7rem;
+        position:absolute; top:@button3top; right:40%;
       }
       .button-4{
-        position:absolute; top:@button4top; right:2rem;
+        position:absolute; top:@button4top; right:10%;
       }
     }
   }

@@ -79,5 +79,5 @@
 
 <style scoped lang="less">
   @import '../../assets/commen';
-
+  .icon-wrapper{cursor:pointer; border:1px solid #fff; transition:all 0.3s;}
 </style>
