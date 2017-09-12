@@ -16,8 +16,10 @@ const MODELS={
 
 };
 
+
+//配置图标库，需要先更新文件
 const svgIcons=['icon--GoogleDrive','icon--Foursquarezhuan','icon--Sharethiszhuanhuan','icon--MicrosoftMes','icon--Xboxzhuanhuan','icon--Dropboxzhuanhuan',
-  'icon--InternetExpl','icon--Grooveshark','icon--Spotifyzhuanhuan','icon--GooglePlay','icon--Gmailzhuanhuan','icon--AWSzhuanhuan','icon--AWSzhuanhuan','icon--Pinboardzhuanhuan','icon--Whatsappzhuanhuan'];
+  'icon--InternetExpl','icon--Grooveshark','icon--Spotifyzhuanhuan','icon--GooglePlay','icon--Gmailzhuanhuan','icon--AWSzhuanhuan','icon--Pinboardzhuanhuan','icon--Whatsappzhuanhuan'];
 const fontIcons=['&#xe60f;','&#xe605;','&#xe67d;','&#xe602;','&#xe62f;','&#xe730;','&#xe626;','&#xe606;','&#xe668;','&#xe77c;']
 
 
@@ -28,17 +30,19 @@ const NAV_BOTTOM='NavBottom';
 
 //微名片模板
 let Cards={
-  template_1:resolve => require(['../../../template/template_1/Card.vue'],resolve)
+  template_1:resolve => require(['../../../template/template_1/Card.vue'],resolve),
+  template_2:resolve => require(['../../../template/template_2/Card.vue'],resolve),
 };
 //主页模板
 let Indexes={
   template_1:resolve => require(['../../../template/template_1/Index.vue'],resolve),
-  template_2:resolve => require(['../../../template/template_2/Index.vue'],resolve)
+  template_2:resolve => require(['../../../template/template_2/Index.vue'],resolve),
 
 };
 //底部导航栏模板
 let NavBottoms={
-  template_1_nav_bottom:resolve => require(['../../../template/template_1/NavBottom.vue'],resolve)
+  template_1_nav_bottom:resolve => require(['../../../template/template_1/NavBottom.vue'],resolve),
+  template_2_nav_bottom:resolve => require(['../../../template/template_2/NavBottom.vue'],resolve),
 };
 //组件设置面板
 let ComponentSettings={

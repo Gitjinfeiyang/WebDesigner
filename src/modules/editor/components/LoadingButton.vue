@@ -36,6 +36,6 @@
 <style scoped lang="less">
   .loading-button-wrapper{
     text-align: center; position:relative;
-    .loading{display: inline-block;}
+    .loading{display: inline-block; line-height: normal; padding-bottom: 1px;}
   }
 </style>

@@ -7,6 +7,7 @@ const ChooseTemplate = resolve => require(['../pages/ChooseTemplate.vue'],resolv
 const User = resolve => require(['../pages/User.vue'],resolve);
 const Message = resolve => require(['../pages/Message.vue'],resolve);
 const MyTemplate = resolve => require(['../pages/MyTemplate.vue'],resolve);
+const Erweima = resolve => require(['../pages/Erweima.vue'],resolve);
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
           path:'mytemplate',
           name:'myTemplate',
           component:MyTemplate
+        },
+        {
+          path:'myerweima',
+          name:'myErweima',
+          component:Erweima
         }
       ]
     },

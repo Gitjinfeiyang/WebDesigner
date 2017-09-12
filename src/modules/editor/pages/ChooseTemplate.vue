@@ -1,19 +1,23 @@
 <template>
   <div class="choose-template">
-    <div class="banner"></div>
+    <div class="banner-wrapper">
+      <div class="width-limit">
+        <div class="banner"></div>
+      </div>
+    </div>
     <div class="width-limit">
       <div class="templates context">
-        <div class="filter">
-          <span class="title">行业</span>
-          <ul>
-            <li class="router-link-active">全部</li>
-            <li>全部</li>
-            <li>全部</li>
-            <li>全部</li>
-            <li>全部</li>
-            <li>全部</li>
-          </ul>
-        </div>
+        <!--<div class="filter">-->
+          <!--<span class="title">行业</span>-->
+          <!--<ul>-->
+            <!--<li class="router-link-active">全部</li>-->
+            <!--<li>全部</li>-->
+            <!--<li>全部</li>-->
+            <!--<li>全部</li>-->
+            <!--<li>全部</li>-->
+            <!--<li>全部</li>-->
+          <!--</ul>-->
+        <!--</div>-->
         <template-preview v-for="template in templates.data" :template="template" :key="template.id"></template-preview>
       </div>
       <div class="block">
@@ -95,7 +99,8 @@
 <style scoped lang="less">
   @import "../assets/commen";
   .choose-template{
-    .banner{height:375px; background:#fff;}
+    .banner-wrapper{background:#fff; padding:30px 0;}
+    .banner{height:380px; background:#fff url("../assets/images/banner.png") no-repeat center center; background-size: 100% 100%;  }
     .width-limit{width:1200px;}
     .templates{
       margin-top: 30px;

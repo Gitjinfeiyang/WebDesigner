@@ -92,7 +92,7 @@
     .context{
       padding:50px 120px; line-height: 36px;
       .block{width:900px; margin:0 auto;}
-      .input-title{flex:0 300px; text-align: right; padding-right: 50px;}
+      .input-title{flex:0 200px; text-align: right; padding-right: 50px;}
       .input-content{padding-right: 100px;}
     }
   }

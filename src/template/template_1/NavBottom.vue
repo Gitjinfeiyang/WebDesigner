@@ -4,7 +4,7 @@
       <div class="icon"><i class="iconfont">&#xe614;</i></div>
       <p class="name">主页</p>
     </router-link>
-    <a class="button">
+    <a class="button" :href="'tel:'+tel">
       <div class="icon"><i class="iconfont">&#xe6dd;</i></div>
       <p class="name">电话</p>
     </a>
@@ -29,6 +29,7 @@
             return {
               mode:this.$store&&this.$store.state&&this.$store.state.mode,
               route,
+              tel:this.$store&&this.$store.state&&this.$store.state.userInfo.mobile,
             }
         },
         computed:{

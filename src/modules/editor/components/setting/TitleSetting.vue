@@ -38,13 +38,21 @@
         created(){
 //          this.getTitles()
         },
+        computed:{
+          userId(){
+              return this.$store.state.userId;
+          },
+          templateCode(){
+              return this.$store.state.templateCode;
+          }
+        },
         methods:{
             addTitle(){
                 delete this.options.data.source[0].updateTime;
                 delete this.options.data.source[0].createTime;
                 API.addTitle({
-                  userId:51,
-                  templateCode:'template_1',
+                  userId:this.userId,
+                  templateCode:this.templateCode,
                   modelId:this.options.id,
                   modelClassify:3,
                   ...this.options.data.source[0]
@@ -52,13 +60,14 @@
                   .then((res) => {
                     if(res.data.flag == true){
                       this.$store.dispatch('notice',{text:'保存成功'})
+                      this.$store.dispatch('reloadIndex')
                     }else{
                         this.$store.dispatch('notice',{text:'保存失败'})
                     }
                   })
             },
             getTitles(){
-                API.getTitles(51)
+                API.getTitles(this.userId)
                   .then((res) => {
 //                    this.title=res.data;
                   })

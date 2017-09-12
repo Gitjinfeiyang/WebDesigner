@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-if="options">
+  <div class="wrapper" v-if="options">
     <div class='card card1'>
       <div class='avatar'><div class='img-wrapper'><img :src='imgUrl+options.logoUrl'/></div></div>
       <div class='name'>{{options.wzName}}</div>
@@ -40,12 +40,12 @@
 
 <style scoped lang="less">
   .wrapper{padding:0.512rem; margin-bottom: 1.5rem;}
-  .card{border-radius: 4px; font-size: 0.6rem; padding:1rem; background-size:100% 100%; margin-bottom: 20px;}
+  .card{border-radius: 8px; font-size: 0.6rem; padding:1rem; background-size:100% 100%; margin-bottom: 20px; overflow: hidden;}
   .card1{background-image: url('./images/card_bg_03.jpg'); text-align: center;}
   .card1 .img-wrapper{display: inline-block; width:3.5rem; height:3.5rem; border-radius: 50%; overflow: hidden;}
   .card1 .img-wrapper img{width:100%; height:100%; background:#f1f1f1;}
   .card1 .name{line-height: 1.8rem; font-size: 0.8rem;}
-  .card1 .introduction{line-height: 1.2rem; color:#666;padding:0.2rem 1rem;}
+  .card1 .introduction{line-height: 1rem; color:#666;padding:0.2rem 1rem;}
 
   .card2{background-image: url('./images/card_bg_06.jpg');}
   .card2 .title{display: inline-block; line-height: 1.8rem; border-bottom: 1px solid #000; font-size: 0.8rem;}

@@ -14,6 +14,7 @@ const MUTATIONS={
   RELOAD:'reload',
 };
 
+let noticeTimeout={};
 const store=new Vuex.Store({
   state:{
     mode:'edit',  //是否为编辑模式
@@ -28,6 +29,11 @@ const store=new Vuex.Store({
     reload:1,
     reloadSwiper:1,
     reloadData:{},
+    userInfo:{},
+    userId:0,
+    templateCode:'',
+    defaultTemplateCode:'',
+    released:true,
   },
   mutations:{
     [MUTATIONS.POSITION_EDITOR](state,options){
@@ -79,8 +85,9 @@ const store=new Vuex.Store({
     },
     notice(context,options){
       context.commit(MUTATIONS.NOTICE,options.text);
+      clearTimeout(noticeTimeout)
       if(options.duration !== 0){
-        setTimeout(function(){
+        noticeTimeout=setTimeout(function(){
           context.commit(MUTATIONS.NOTICE,'');
         },options.duration||3000);
       }

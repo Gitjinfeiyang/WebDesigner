@@ -25,8 +25,12 @@ class Api {
     return api.post('/message/add.json',message);
   }
 
-  getIndex(userId,templateCode,type){
-    return api.get(`/templateSet/main.json?userId=${userId}&templateCode=${templateCode}&type=${type}`)
+  getIndex(userId,templateCode,type=''){
+    let baseUrl=`/templateSet/main.json?userId=${userId}`;
+    if(type=='view'){
+      baseUrl+=`&templateCode=${templateCode}&type=view`
+    }
+    return api.get(baseUrl)
   }
 
   getArticles(userId,source){
@@ -43,7 +47,12 @@ class Api {
     return api.get(`/wzUser/findOne.json?userId=${userId}`)
   }
 
+  getDefaultTemplate(userId){
+    return api.get(`/userTemplate/findDefaultTemp.json?userId=${userId}`)
+  }
+
 }
+
 
 
 let API =new Api();

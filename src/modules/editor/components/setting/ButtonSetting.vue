@@ -11,20 +11,20 @@
           <div class="input-title">链接到</div>
           <div class="input-content">
             <label>
-              <input type="radio" name="linkTo" :value="route.HOME.id" v-model="options.data.source[0].classify"/>首页
+              <input type="radio" name="linkTo" :value="route.HOME.id" v-model="buttonData.classify"/>首页
             </label>
             <label>
-              <input type="radio" name="linkTo" :value="route.LIST.id" v-model="options.data.source[0].classify"/>文章列表
+              <input type="radio" name="linkTo" :value="route.LIST.id" v-model="buttonData.classify"/>文章列表
             </label>
             <label>
-              <input type="radio" name="linkTo" :value="route.MESSAGE.id" v-model="options.data.source[0].classify"/>留言板
+              <input type="radio" name="linkTo" :value="route.MESSAGE.id" v-model="buttonData.classify"/>留言板
             </label>
             <label>
-              <input type="radio" name="linkTo" :value="route.CARD.id" v-model="options.data.source[0].classify"/>微名片
+              <input type="radio" name="linkTo" :value="route.CARD.id" v-model="buttonData.classify"/>微名片
             </label>
           </div>
         </div>
-        <div class="list" v-if="options.data.source[0].classify == route.LIST.id">
+        <div class="list" v-if="buttonData.classify == route.LIST.id">
           <div class="title">文章列表</div>
           <table>
             <thead>
@@ -95,6 +95,7 @@
             })
         },
         mounted(){
+
         },
         computed:{
           buttonData(){
@@ -104,9 +105,12 @@
               get:function(){
                 return this.buttonData.source;
               },
-            set:function(val){
-                  this.buttonData.source=val;
-            }
+              set:function(val){
+                  if(!this.buttonData.source){
+                      this.$set(this.buttonData,'source',[])
+                  }
+                    this.buttonData.source=val;
+              }
           }
         },
         methods:{
@@ -129,8 +133,8 @@
             }
 
               let data={
-                userId:51,
-                templateCode:'template_1',
+                userId:this.$store.state.userId,
+                templateCode:this.$store.state.templateCode,
                 modelId:this.options.id,
                 modelClassify:2,
                 articleids:ids,
@@ -143,6 +147,7 @@
               API.editButton(data)
                 .then((res) => {
                   this.$store.dispatch('notice',{text:'保存成功'});
+                  this.$store.dispatch('reloadIndex');
                 })
           }
         },
@@ -192,7 +197,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.3);
+background: rgba(0, 0, 0, 0.5);
 line-height: 100vh;
 text-align: center;
 z-index: 50;
@@ -203,9 +208,9 @@ overflow: hidden;
 vertical-align: middle;
 width: 80%;
 height: 80%;
-border: 1px solid #e4e4e4;
+border: 1px solid #666;
 border-radius: 6px;
-  box-shadow: 0 0 10px 1px #666;
+  box-shadow: 0 0 10px 1px #333;
 .title-bar {
 text-align: left; position:relative;
   .close-button{

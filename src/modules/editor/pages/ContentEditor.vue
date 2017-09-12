@@ -13,10 +13,10 @@
             <div class="line-left line-vertical" :style="componentSelector.lineLeft"></div>
             <div class="line-right line-vertical" :style="componentSelector.lineRight"></div>
           </div>
-          <component :is="templateId" :options="userData" @click="stop"></component>
+          <component :is="templateId" :options="userData" v-if="gotUserData"></component>
           <!--<component :is="templateId+'_nav_bottom'"></component>-->
           <transition name="fade">
-            <div class="no-data-notice" v-if="userData.length<=0">
+            <div class="no-data-notice" v-if="!gotUserData">
               <div class="loading">
                 <i class="iconfont">&#xe703;</i>
               </div>
@@ -49,6 +49,7 @@
     data(){
       return({
         userData:[],
+        gotUserData:false,
         showEditor:true,
         templateId:'',
       })
@@ -64,9 +65,13 @@
        }
     },
     created(){
-        this.templateId=this.$route.params.id;
+        this.$store.state.templateCode=this.templateId=this.$route.params.id;
         this.getIndexResource()
     },
+//    beforeDestroy(){
+//      this.$store.state.editorPosition={};
+//      this.$store.state.componentSelector={};
+//    },
     computed:{
       transformCss:{
         get:function(){
@@ -112,20 +117,15 @@
       },
 
       getIndexResource(){
-          API.getIndex(51,'template_1','view')
+          API.getIndex(51,this.templateId,'view')
             .then( (res) => {
                 this.userData=res.data;
+                this.gotUserData=true;
             })
             .catch((err) => {
 
             })
       },
-
-      stop(e){
-//        e.stopPropagation();
-        console.log(e+'click')
-//        e.preventDefault();
-      }
     },
     components:{
       ...Indexes,
@@ -163,7 +163,7 @@
     height:calc(~"100vh - 144px");min-height: 500px;
     .width-limit{display: flex;  background:#fff; padding:4vh 80px 0 80px; height:100%; overflow: hidden;}
   }
-  .phone-view{width:calc(~"0.52*(100vh - 200px)"); min-width: 300px; height:calc(~"100vh - 200px"); min-height: 400px; padding:5vh 0.5vh 9vh 0.5vh; border:1px solid #999; border-radius: 4vh;
+  .phone-view{width:calc(~"0.52*(100vh - 200px)"); min-width: 210px; height:calc(~"100vh - 200px"); min-height: 400px; padding:5vh 0.5vh 9vh 0.5vh; border:1px solid #999; border-radius: 4vh;
     position:relative; box-shadow: 0 0 20px 1px #dfdfdf; }
 
   .phone-view:after{display: block; content:''; width:6vh; height:6vh; border-radius: 50%; border:1px solid #999; margin:1.5vh auto;}
@@ -175,16 +175,19 @@
       width:100%; height:100%; background:#fff; text-align: center; padding-top: 260px; position:absolute; top:0; left:0;
       .loading{
         height:40px; line-height: 40px;
-        .iconfont{font-size: 36px; }
+        .iconfont{font-size: 36px; padding-bottom: 4px;}
       }
       .text{font-size: 12px; line-height: 60px;}
     }
   }
   textarea{width:300px; height:200px;}
   .edit-panel{
-    width:calc(~"100% - 0.52*(100vh - 200px) - 120px"); height:100%;margin:0px 0 30px 120px;position:relative; overflow: hidden;
-    .mask-top{position:absolute; top:0; left:0; width:100%; height:30px; background:linear-gradient(to bottom,#fff,rgba(255,255,255,0));}
-    .scroll-wrapper{ height:100%; overflow: auto; padding-top: 30px; }
+    width:calc(~"100% - 0.52*(100vh - 200px) - 120px"); height:100%;margin:0 0 30px 120px;position:relative; overflow: hidden;
+    .mask-top{position:absolute; top:0; left:0; width:100%; height:30px; background:linear-gradient(to bottom,#fff,rgba(255,255,255,0));
+      z-index: 2;}
+    .scroll-wrapper{
+      height:100%; overflow: auto; padding-top: 30px; position:relative;
+    }
   }
   .component-selector{
     position:absolute; top:0; left:0; z-index: 10;

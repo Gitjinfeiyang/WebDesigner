@@ -79,11 +79,11 @@
         table{
           border-collapse: collapse; line-height: 36px; table-layout: fixed; text-align: center; width:100%;
           .message-context{display: inline-block; line-height: 24px; padding:8px; max-height: 76px; height:100%;
-            overflow: hidden; text-overflow: ellipsis;}
+            overflow: hidden; text-overflow: ellipsis; vertical-align: middle;}
           td.time{width:20%;}
           td.contact{width:20%;}
           td.content{width:60%;}
-          thead{background:@green; color:#fff;}
+          thead{background:@lightGreen; color:#666;}
           tbody{
             tr:nth-of-type(even){background:#f8f8f8;}
           }

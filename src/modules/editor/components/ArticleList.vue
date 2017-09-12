@@ -28,7 +28,7 @@
           <div class="add-new"><span class="link" @click="addArticle">添加到文章列表</span></div>
         </div>
         <div class="block">
-          <div class="title-bar">添加文章</div>
+          <div class="title-bar">{{article.id?'编辑文章':'添加文章'}}</div>
           <div class="content">
             <div class="input-line">
               <div class="input-title">标题</div>
@@ -44,10 +44,11 @@
             </div>
             <div class="input-line">
               <div class="input-title">内容</div>
-              <div class="input-content"><wang-editor ref="wangEditor" :content="article.content"></wang-editor></div>
+              <div class="input-content"><html-editor :content="article.content" @success="getContent"></html-editor></div>
             </div>
             <div class="button-wrapper">
               <input type="button" class="border-button" value="保存" @click="updateArticle"/>
+              <input type="button" class="border-button" value="重置" @click="resetArticle"/>
             </div>
           </div>
         </div>
@@ -58,7 +59,7 @@
 <script>
   import {API,IMGURL} from '../assets/getData';
   import ImgUploader from '../components/ImgUploader.vue';
-  import WangEditor from '../components/WangEditor.vue';
+  import HtmlEditor from '../components/HtmlEditor.vue'
 
 
   export default {
@@ -74,15 +75,22 @@
         created(){
           this.getAllArticle();
         },
+        computed:{
+          userId(){
+              return this.$store.state.userId;
+          },
+        },
         methods:{
             getAllArticle(){
-                API.getAllArticle(51)
+                API.getAllArticle(this.userId)
                   .then((res) => {
                     this.allArticle=res.data;
-                    for(let i=0; i<this.allArticle.data.length; i++){
-                      for(let o=0; o<this.source.length; o++){
-                        if(this.allArticle.data[i].id == this.source[o].id){
-                          this.allArticle.data[i].selected=true;
+                    if(this.source&&this.source.length){
+                      for(let i=0; i<this.allArticle.data.length; i++){
+                        for(let o=0; o<this.source.length; o++){
+                          if(this.allArticle.data[i].id == this.source[o].id){
+                            this.allArticle.data[i].selected=true;
+                          }
                         }
                       }
                     }
@@ -95,11 +103,17 @@
               })
           },
           updateArticle(){
-              this.article.content=this.$refs.wangEditor.editor.txt.html();
-            API.updateArticle({userId:51,...this.article})
+            API.updateArticle({
+              userId:this.userId,
+              id:this.article.id,
+              img:this.article.img,
+              title:this.article.title,
+              summary:this.article.summary,
+              content:this.article.content,
+            })
               .then((res) => {
                 this.getAllArticle();
-                this.article={}
+                this.resetArticle();
                 this.$store.dispatch('notice',{text:'保存成功'})
               })
           },
@@ -126,6 +140,12 @@
                 this.getAllArticle()
               })
           },
+          resetArticle(){
+            this.article={};
+          },
+          getContent(data){
+            this.article.content=data;
+          },
           getImg(url){
             this.article.img=url;
           },
@@ -135,7 +155,7 @@
         },
         components:{
             ImgUploader,
-            WangEditor
+          HtmlEditor,
         }
     }
 </script>

@@ -3,6 +3,7 @@ var path = require('path');
 
 let  testServer='http://10.10.77.62:6080';
 let localServer='http://10.10.71.242:6080';
+let xiangyongServer='http://10.10.71.243:6080';
 
 module.exports = {
   build: {
@@ -11,7 +12,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: true,
+    productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
@@ -34,6 +35,10 @@ module.exports = {
       '/api':{
         target:testServer,
         pathRewrite:{'/api':''}
+      },
+      '/auth':{
+        target:xiangyongServer,
+        pathRewrite:{'/auth':''}
       },
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

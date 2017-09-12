@@ -21,6 +21,13 @@ let uploadApi=axios.create({
   }
 });
 
+let auth=axios.create({
+  baseURL:'/auth',
+  // headers:{
+  //   'Content-Type':'application/x-www-form-urlencoded'
+  // }
+})
+
 
 const IMGURL='http://10.10.77.62/';
 
@@ -39,6 +46,10 @@ api.interceptors.request.use(function (config) {
 });
 
 class Api {
+
+  testXiangyong(){
+    return auth.post('/services/user/postUser.json',{userName:'xiangyong'})
+  }
 
   release(userId,templateCode){
     return api.get(`/templateSet/release.json?userId=${userId}&templateCode=${templateCode}`)
@@ -76,6 +87,10 @@ class Api {
 
   findUserTemplates(userId){
     return api.get(`/userTemplate/findUserTemp.json?userId=${userId}`);
+  }
+
+  findDefaultTemplate(userId){
+    return api.get(`/userTemplate/findDefaultTemp.json?userId=${userId}`)
   }
 
 
@@ -166,8 +181,11 @@ class Api {
 
 
 
-  getErweima(useId,templateCode,type=''){
-    let baseUrl=`http://10.10.71.2:8080/modules/phone.html#/home`;
+  getErweima(userId,templateCode,type=''){
+    let baseUrl=`http://10.10.71.181:8080/modules/phone.html#/home?userId=${userId}`;
+    if(type=='view'){
+      baseUrl+=`&template=${templateCode}&type=${type}`
+    }
     return api.get(`/templateSet/getQrCode.json?url=${encodeURIComponent(baseUrl)}`)
   }
 

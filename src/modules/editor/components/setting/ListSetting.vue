@@ -26,8 +26,8 @@
                 swiper+=articles[i].id+',';
             }
               API.setTemplate({
-                userId:51,
-                templateCode:'template_1',
+                userId:this.$store.state.userId,
+                templateCode:this.$store.state.templateCode,
                 modelId:this.options.id,
                 modelClassify:4,
                 sourceId:swiper,

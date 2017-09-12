@@ -29,5 +29,7 @@
 </script>
 
 <style scoped lang="less">
-
+.detail{
+  font-size: 24px; padding:20px;
+}
 </style>

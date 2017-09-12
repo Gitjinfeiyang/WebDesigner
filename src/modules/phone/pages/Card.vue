@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <template_1 :options="info"></template_1>
+    <component :is="templateCode" :options="info"></component>
   </div>
 </template>
 
@@ -11,15 +11,21 @@ import {API} from '../assets/getData';
   export default {
       data(){
         return({
-          info:{}
+          info:{},
+          userId:this.$store.state.userId,
         })
+      },
+      computed:{
+        templateCode(){
+            return this.$store.state.templateCode;
+        }
       },
       created(){
         this.getUserInfo()
       },
       methods:{
         getUserInfo(){
-            API.getUserInfo(51)
+            API.getUserInfo(this.userId)
               .then((res) => {
                 this.info=res.data;
               })

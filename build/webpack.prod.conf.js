@@ -123,7 +123,7 @@ var pages =  utils.getMultiEntry('./src/modules/**/*.html');
 for (var pathname in pages) {
   var conf = {
     filename: pathname + '.html',
-    template: pages[pathname], // 模板路径
+    template: pages[pathname][1], // 模板路径
     chunks: ['vendor',pathname], // 每个html引用的js模块
     inject: true,              // js插入位置
     hash:true

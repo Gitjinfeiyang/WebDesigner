@@ -25,18 +25,14 @@
 
 <script>
   import NavBottom from './NavBottom';
-  import Swiper from './component/swiper.vue';
+  import Swiper from '../commonComponent/swiper.vue';
   import ButtonGroup from './component/ButtonsGroup.vue'
   import ButtonGroup1 from './component/ButtonsGroup1.vue'
-  import News from './component/News.vue'
-  import MButton from './component/Button.vue';
-  import BgButton from './component/BgButton.vue';
-  import MTitle from './component/Title.vue';
+  import News from '../commonComponent/News.vue'
+  import MButton from '../commonComponent/Button.vue';
+  import BgButton from '../commonComponent/BgButton.vue';
+  import MTitle from '../commonComponent/Title.vue';
 
-  const MODELS={
-    swiper:1,
-
-  };
     export default {
         props:['options'],
         mounted(){

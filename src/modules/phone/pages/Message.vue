@@ -44,6 +44,7 @@
             return ({
               valiImg:'',
               message:{},
+              userId:this.$store.state.userId,
             })
         },
       created(){
@@ -51,7 +52,7 @@
       },
       methods:{
           getValiCode(){
-              API.getValiCode(51)
+              API.getValiCode(this.userId)
                 .then((res) => {
                   this.valiImg=res.data.img;
                   this.message.token=res.data.token;
@@ -59,7 +60,11 @@
           },
 
           addMessage(){
-              API.addMessage({userId:51,...this.message})
+              if(this.message.content.length>99){
+                  alert('留言字数限制100字符');
+                  return;
+              }
+              API.addMessage({userId:this.userId,...this.message})
                 .then((res) => {
                   if(res.data.flag == true){
                     alert('留言成功')
@@ -67,6 +72,7 @@
                     this.getValiCode();
                   }else{
                       alert('验证码错误');
+                    this.getValiCode();
                   }
                 })
           }

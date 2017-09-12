@@ -44,6 +44,6 @@
   font-size: 20px; text-align: center; padding-top: 20vh; line-height: 160px; color:#ddd;
   .iconfont{font-size: 160px; display: inline-block; vertical-align: middle; padding-right: 50px;}
 }
-  .width-limit{margin-top: 20px; background:#fff;}
+  .width-limit{margin-top: 20px; background:#fff; padding:30px; width:1200px;}
   .my-template,.width-limit{min-height:calc(~"100vh - 164px");}
 </style>

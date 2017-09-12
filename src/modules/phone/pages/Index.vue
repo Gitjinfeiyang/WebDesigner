@@ -1,5 +1,7 @@
 <template>
-  <template_1 :options="userData" keep-alive></template_1>
+  <div class="index">
+    <component v-if="templateCode" :is="templateCode" :options="userData" keep-alive></component>
+  </div>
 </template>
 
 <script>
@@ -8,17 +10,29 @@ import {Indexes} from '../../editor/assets/getTemplate'
 import {API} from '../assets/getData';
 
   export default {
+      props:['template','test'],
       data(){
           return{
             userData: {}
           }
+      },
+      computed:{
+        userId(){
+            return this.$store.state.userId;
+        },
+        templateCode(){
+            return this.$store.state.templateCode;
+        },
+        type(){
+            return this.$store.state.type;
+        }
       },
       created(){
         this.getIndexData()
       },
       methods:{
         getIndexData(){
-            API.getIndex(51,'template_1','view')
+            API.getIndex(this.userId,this.templateCode,this.type)
               .then((res) => {
                 this.userData=res.data;
               })

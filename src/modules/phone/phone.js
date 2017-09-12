@@ -4,6 +4,7 @@
 import Vue from 'vue'
 import Phone from './phone.vue'
 import router from './router/router'
+import {store} from './vuex/store'
 
 Vue.config.productionTip = false
 
@@ -16,6 +17,7 @@ Vue.directive('component',{
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<phone/>',
   components: { Phone }
 })
