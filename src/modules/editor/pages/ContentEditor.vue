@@ -103,6 +103,9 @@
       },
       reloadData(){
           return this.$store.state.reloadData;
+      },
+      userId(){
+          return this.$store.state.userId;
       }
     },
     methods:{
@@ -116,7 +119,7 @@
       },
 
       getIndexResource(){
-          API.getIndex(51,this.templateId,'view')
+          API.getIndex(this.userId,this.templateId,'view')
             .then( (res) => {
                 this.userData=res.data;
                 this.gotUserData=true;

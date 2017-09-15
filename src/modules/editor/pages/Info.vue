@@ -59,12 +59,17 @@
       created(){
         this.getUserInfo();
       },
+      computed:{
+        userId(){
+            return this.$store.state.userId;
+        }
+      },
       methods:{
           getImg(url){
               this.wzUser.logoUrl=url;
           },
           getUserInfo(){
-            API.getUserInfo(51)
+            API.getUserInfo(this.userId)
               .then( (res) => {
                   this.wzUser=res.data;
               })

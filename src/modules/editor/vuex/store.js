@@ -44,10 +44,7 @@ const store=new Vuex.Store({
           w:target.offsetWidth,
           h:target.offsetHeight
         };
-        let position={
-          x:target.offsetLeft,
-          y:target.offsetTop
-        };
+        let position=caculatePosition(target)
         state.editorPosition={
           lineTop:{
             height:0,
@@ -113,5 +110,19 @@ const store=new Vuex.Store({
     }
   }
 });
+
+
+function caculatePosition(target,position={x:0,y:0}){
+  position.x+=target.offsetLeft;
+  position.y+=target.offsetTop;
+  let parent=target.parentNode;
+  let styles=getComputedStyle(parent,'');
+  if(parent.className.indexOf("template-area")<0&&styles.position !='static'){
+    return caculatePosition(parent,position);
+    // return position
+  }else{
+    return position;
+  }
+}
 
 export {store}

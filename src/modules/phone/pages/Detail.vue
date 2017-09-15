@@ -14,7 +14,8 @@
           }
         },
         created(){
-            this.getArticle()
+//            this.initUrl();
+            this.getArticle();
         },
         methods:{
             getArticle(){
@@ -23,7 +24,10 @@
                   .then((res) => {
                       this.article=res.data.content;
                   })
-            }
+            },
+          initUrl(){
+            this.$router.push({name:this.$route.name,query:{userId:this.userId}})
+          }
         }
     }
 </script>

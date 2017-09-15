@@ -5,7 +5,7 @@
   src:url('./fonts/SourceHanSansCN-Light.otf') format('opentype');
 }
 
-html{font-size: 16px; color:#666;  -ms-overflow-style: none;
+html{font-size: 20px; color:#666;  -ms-overflow-style: none;
   font-family: 'siyuan' !important;
  /*font-style:normal;*/
   /*-webkit-font-smoothing: antialiased;*/

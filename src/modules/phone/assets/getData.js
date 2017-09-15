@@ -2,9 +2,11 @@
  * Created by Jinfeiyang on 2017-08-30.
  */
 import axios from 'axios';
+let  testServer='http://10.10.77.62:6080/wz';
+let proxy='/api/wz'
 
 let api = axios.create({
-  baseURL: '/api/wz',
+  baseURL: testServer,
   // headers: {
   //   'Content-Type': 'application/x-www-form-urlencoded',
   // },

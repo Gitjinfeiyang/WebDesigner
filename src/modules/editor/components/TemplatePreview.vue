@@ -16,7 +16,7 @@
 <script>
   import {IMGURL,API} from '../assets/getData'
     export default {
-        props:['template'],
+        props:['template','type'],
       data(){
             return({
               imgUrl:IMGURL,
@@ -30,11 +30,14 @@
         },
         templateCode(){
             return this.template.code||this.template.templateCode;
+        },
+        userId(){
+            return this.$store.state.userId;
         }
       },
       methods:{
           goTo(){
-              API.useTemplate(51,this.templateCode)
+              API.useTemplate(this.userId,this.templateCode)
                 .then((res) => {
                   this.$router.push({name:'contentEditor',params:{id:this.templateCode}})
                 })
@@ -42,7 +45,12 @@
         getErweima(){
               if(this.previewErweima.length>0||this.gettingErweima) return;
               this.gettingErweima=true;
-              API.getErweima(51,this.templateCode,'view')
+              let userId=56;
+              //如果是个人模板则预览个人的，否则预览公用的
+              if(this.type == 'private'){
+                  userId=this.userId;
+              }
+              API.getErweima(userId,this.templateCode,'view')
                 .then((res) => {
                   this.previewErweima=res.data.img;
                   this.gettingeErweima=false;

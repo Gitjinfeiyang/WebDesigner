@@ -25,7 +25,7 @@ import {API} from './assets/getData';
                 templateId:'template_1',
                 info:{},
               templateCode:'',
-              userId:this.$route.query.userId||localStorage.getItem('userid'),
+              userId:this.$route.params.userId||localStorage.getItem('userid'),
             }
         },
         created(){
@@ -33,14 +33,14 @@ import {API} from './assets/getData';
         },
         methods:{
           getUserInfo(){
-              if(this.$store.state.userId==undefined){
+
+            if(this.userId==undefined){
                   alert('用户不存在');
-                  return;
-              }else if(this.$store.state.userId != -1){
                   return;
               }
               this.$store.state.userId=this.userId;
             localStorage.setItem('userid',this.userId);
+
             API.getUserInfo(this.userId)
               .then((res) => {
                 this.$store.state.userInfo=this.info=res.data;
@@ -50,6 +50,8 @@ import {API} from './assets/getData';
           },
           getTemplate(){
               let type=this.$store.state.type=this.$route.query.type||localStorage.getItem('type');
+
+              //如果是预览版
               if(type == 'view'){
                 this.templateCode=this.$store.state.templateCode=this.$route.query.template||localStorage.getItem('templateCode');
               }else{

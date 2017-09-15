@@ -18,6 +18,8 @@
 <script>
   import COMPONENT_TYPE from '../componentType';
   import {IMGURL} from '../../modules/editor/assets/getData'
+  import {route} from '../../modules/phone/router/router';
+
 
   export default {
       props:['source','id'],
@@ -54,7 +56,7 @@
       methods:{
           goTo(id){
             if(this.$store&&this.$store.state.mode=='edit') return;
-            this.$router.push({path:'/detail',query:{article:id}})
+            this.$router.push({name:route.DETAIL.name,query:{article:id}})
           }
       }
   }

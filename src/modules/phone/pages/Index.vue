@@ -28,6 +28,7 @@ import {API} from '../assets/getData';
         }
       },
       created(){
+//          this.initUrl()
         this.getIndexData()
       },
       methods:{
@@ -36,6 +37,9 @@ import {API} from '../assets/getData';
               .then((res) => {
                 this.userData=res.data;
               })
+        },
+        initUrl(){
+          this.$router.push({name:this.$route.name,query:{userId:this.userId}})
         }
       },
       components:Indexes

@@ -18,50 +18,69 @@ Vue.use(Router);
 const route={
   HOME:{
     id:1,
-    path:'/home'
+    path:'home',
+    name:'home',
   },
   CARD:{
     id:2,
-    path:'/card'
+    path:'card',
+    name:'card',
+
   },
   MESSAGE:{
     id:3,
-    path: '/message'
+    path: 'message',
+    name:'message',
+
   },
   LIST:{
     id:4,
-    path:'/list'
+    path:'list',
+    name:'list',
+
+  },
+  DETAIL:{
+    id:5,
+    path:'detail',
+    name:'detail',
+
   }
 };
 
 export default new Router({
   routes: [
     {
-      path:'/',
+      path:'/:userId',
       component:Home,
       children:[
         {
-          path:route.HOME.path,
+          path:'/:userId/'+route.HOME.path,
+          name:route.HOME.name,
           component:Index
         },
         {
-          path:route.CARD.path,
+          path:'/:userId/'+route.CARD.path,
+          name:route.CARD.name,
           component:Card,
         },
         {
-          path:route.MESSAGE.path,
+          path:'/:userId/'+route.MESSAGE.path,
+          name:route.MESSAGE.name,
           component:Message
         },
         {
-          path:route.LIST.path,
+          path:'/:userId/'+route.LIST.path,
+          name:route.LIST.name,
           component:List
+        },
+        {
+          path:'/:userId/'+route.DETAIL.path,
+          name:route.DETAIL.name,
+          component:Detail
         }
       ]
     },
-    {
-      path:'/detail',
-      component:Detail
-    }
+
 
 
   ]

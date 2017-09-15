@@ -12,9 +12,11 @@ Vue.directive('component',{
 
 });
 
-router.beforeEach((to,from,next) => {
-  next()
-});
+// router.beforeEach((to,from,next) => {
+//   // console.log(store.state.userId)
+//   to.query={userId:store.state.userId};
+//   next()
+// });
 
 
 /* eslint-disable no-new */

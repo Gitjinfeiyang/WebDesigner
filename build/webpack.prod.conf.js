@@ -21,8 +21,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].[chunkhash:7].js'),
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash:7].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -77,6 +77,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         )
       }
     }),
+    // new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
     // extract webpack runtime and modules manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
@@ -121,14 +122,21 @@ if (config.build.bundleAnalyzerReport) {
 //构建生成多页面的HtmlWebpackPlugin配置，主要是循环生成
 var pages =  utils.getMultiEntry('./src/modules/**/*.html');
 for (var pathname in pages) {
+  // console.log("template:" + pages[pathname]);
+  // 配置生成的html文件，定义路径等
+  console.log(pathname)
   var conf = {
     filename: pathname + '.html',
     template: pages[pathname][1], // 模板路径
-    chunks: ['vendor',pathname], // 每个html引用的js模块
-    inject: true,              // js插入位置
-    hash:true
+    minify: { //传递 html-minifier 选项给 minify 输出
+      removeComments: true
+    },
+    inject: true, // js插入位置
+    chunksSortMode: 'dependency',
+    hash:true,
+    chunks: ["manifest","vendor", pathname], // 每个html引用的js模块，也可以在这里加上vendor等公用模块
   };
-
+  // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
 

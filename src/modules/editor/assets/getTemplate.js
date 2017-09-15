@@ -19,7 +19,8 @@ const MODELS={
 
 //配置图标库，需要先更新文件
 const svgIcons=['icon--GoogleDrive','icon--Foursquarezhuan','icon--Sharethiszhuanhuan','icon--MicrosoftMes','icon--Xboxzhuanhuan','icon--Dropboxzhuanhuan',
-  'icon--InternetExpl','icon--Grooveshark','icon--Spotifyzhuanhuan','icon--GooglePlay','icon--Gmailzhuanhuan','icon--AWSzhuanhuan','icon--Pinboardzhuanhuan','icon--Whatsappzhuanhuan'];
+  'icon--InternetExpl','icon--Grooveshark','icon--Spotifyzhuanhuan','icon--GooglePlay','icon--Gmailzhuanhuan','icon--AWSzhuanhuan','icon--Pinboardzhuanhuan',
+  'icon--Whatsappzhuanhuan','icon-wenzhang1','icon-xiangmu7','icon-liuyan1','icon-yonghu'];
 const fontIcons=['&#xe60f;','&#xe605;','&#xe67d;','&#xe602;','&#xe62f;','&#xe730;','&#xe626;','&#xe606;','&#xe668;','&#xe77c;']
 
 

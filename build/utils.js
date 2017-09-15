@@ -85,7 +85,7 @@ exports.getMultiEntry = function (globPath) {
       pathsrc = tmp[1];
     }
     //console.log(pathsrc)
-    pathname = pathsrc + '/' + basename; // 正确输出js和html的路径
+    pathname =basename; // 正确输出js和html的路径
     // entries[pathname] = entry;
     entries[pathname] = ["babel-polyfill",entry];
     //console.log(pathname+'-----------'+entry);

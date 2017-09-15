@@ -3,9 +3,11 @@
  */
 import axios from 'axios';
 import {store} from '../vuex/store'
+let  testServer='http://10.10.77.62:6080/wz';
+let proxy='/api/wz'
 
 let api = axios.create({
-  baseURL: '/api/wz',
+  baseURL: proxy,
   // headers: {
   //   'Content-Type': 'application/x-www-form-urlencoded',
   // },
@@ -15,7 +17,7 @@ let api = axios.create({
 });
 
 let uploadApi=axios.create({
-  baseURL:'/api/wz',
+  baseURL:proxy,
   headers:{
     'Content-Type': 'multipart/form-data',
   }
@@ -45,10 +47,31 @@ api.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
+// Add a response interceptor
+api.interceptors.response.use(function (response) {
+  // Do something with response data
+  console.log(response)
+  return response;
+}, function (error) {
+  // Do something with response error
+  console.log('服务器错误')
+  return Promise.reject(error);
+});
+
 class Api {
+
+  test(){
+    return api.get(`/wzUser/getUserId.json`)
+  }
 
   testXiangyong(){
     return auth.post('/services/user/postUser.json',{userName:'xiangyong'})
+  }
+
+
+
+  getUserId(){
+    return api.get('/wzUser/getUserId.json');
   }
 
   release(userId,templateCode){
@@ -182,9 +205,9 @@ class Api {
 
 
   getErweima(userId,templateCode,type=''){
-    let baseUrl=`http://10.10.70.121:8080/modules/phone.html#/home?userId=${userId}`;
+    let baseUrl=`${window.location.origin}/modules/phone.html#/${userId}/home`;
     if(type=='view'){
-      baseUrl+=`&template=${templateCode}&type=${type}`
+      baseUrl+=`?template=${templateCode}&type=${type}`
     }
     return api.get(`/templateSet/getQrCode.json?url=${encodeURIComponent(baseUrl)}`)
   }

@@ -207,7 +207,7 @@ display: inline-block;
 overflow: hidden;
 vertical-align: middle;
 width: 80%;
-height: 80%;
+height: 95%;
 border: 1px solid #666;
 border-radius: 6px;
   box-shadow: 0 0 10px 1px #333;

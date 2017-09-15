@@ -49,7 +49,7 @@
 <style scoped lang="less">
   @import './style/commen';
 .nav{
-  display: flex; width:100%; height:2.2rem;padding:0.2rem 0; background:#fff; border-top: 1px solid #f1f1f1;
+  display: flex; width:100%; padding:0.2rem 0; background:#fff; border-top: 1px solid #f1f1f1;
   position:fixed; bottom:0; left:0;
   .button{flex:1; text-align: center;}
   .icon{height:1.3rem; width:100%; text-align: center;}

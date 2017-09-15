@@ -37,25 +37,15 @@ module.exports = merge(baseWebpackConfig, {
   ]
 })
 
-function getEntry(globPath) {
-  var entries = {}, basename, tmp, pathname;
-  glob.sync(globPath).forEach(function (entry) {
-    basename = path.basename(entry, path.extname(entry));
-    tmp = entry.split('/').splice(-3);
-    pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-     entries[pathname] = entry;  });
-  return entries;
-}
-
-    var pages = getEntry('./src/modules/**/*.html');
+    var pages =utils.getMultiEntry('./src/modules/**/*.html');
     console.log("dev pages----------------------");
     for (var pathname in pages) {
-      console.log("filename:" + pathname + '.html');
-      console.log("template:" + pages[pathname]);
+      // console.log("filename:" + pathname + '.html');
+      // console.log("template:" + pages[pathname]);
       // 配置生成的html文件，定义路径等
       var conf = {
         filename: pathname + '.html',
-        template: pages[pathname], // 模板路径
+        template: pages[pathname][1], // 模板路径
         minify: { //传递 html-minifier 选项给 minify 输出
           removeComments: true
         },

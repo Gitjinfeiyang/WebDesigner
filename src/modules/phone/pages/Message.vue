@@ -75,7 +75,7 @@
                     this.getValiCode();
                   }
                 })
-          }
+          },
       }
     }
 </script>

@@ -1,28 +1,13 @@
 <template>
-  <div class="nav" :style="mode == 'edit'?'position:initial':''" v-show="!hide">
-    <router-link class="button" :to="route.CARD">
-      <div class="icon"><i class="iconfont">&#xe61a;</i></div>
-      <p class="name">微名片</p>
-    </router-link>
-    <router-link class="button" :to="route.HOME">
-      <div class="icon"><i class="iconfont">&#xe614;</i></div>
-      <p class="name">公司简介</p>
-    </router-link>
-    <a class="button" :href="'tel:'+tel">
-      <div class="icon"><i class="iconfont">&#xe6dd;</i></div>
-      <p class="name">经典案例</p>
-    </a>
-    <router-link class="button" :to="route.MESSAGE">
-      <div class="icon"><i class="iconfont">&#xe638;</i></div>
-      <p class="name">在线留言</p>
-    </router-link>
-
+  <div class="nav-wrapper" v-show="!hide">
+    <nav-bottom></nav-bottom>
   </div>
 </template>
 
 <script>
   import COMPONENT_TYPE from '../componentType';
   import {route} from '../../modules/phone/router/router'
+  import NavBottom from '../template_1/NavBottom.vue'
 
   export default {
     props:['options','styles'],
@@ -53,25 +38,21 @@
         }
       },
       checkShow(){
-        if(this.$route.path == '/home'){
+        if(this.$route.path.indexOf('home')>=0){
           this.hide=true;
         }else{
           this.hide=false;
         }
       }
+    },
+    components:{
+        NavBottom
     }
   }
 </script>
 
 <style scoped lang="less">
   @import './style/commen';
-  .nav{
-    display: flex; width:100%; height:2.2rem;padding:0.2rem 0; background:#fff; border-top: 1px solid #f1f1f1;
-    position:fixed; bottom:0; left:0;
-    .button{flex:1; text-align: center;}
-    .icon{height:1.3rem; width:100%; text-align: center;}
-    .name{font-size: 0.5rem;}
-    .router-link-active{color:@orange;}
-  }
+
 </style>
 

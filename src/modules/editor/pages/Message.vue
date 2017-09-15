@@ -45,15 +45,20 @@
               return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
           }
         },
+        computed:{
+          userId(){
+              return this.$store.state.userId;
+          }
+        },
         methods:{
             getMessage(){
-                API.getMessage(51)
+                API.getMessage(this.userId)
                   .then((res) => {
                     this.message=res.data;
                   })
             },
             getMoreMessage(){
-                API.getMessage(51,this.message.start+11)
+                API.getMessage(this.userId,this.message.start+11)
                   .then((res) => {
                     if(res.data.data.length<this.message.rows){
                       this.$store.dispatch('notice',{text:'没有更多数据了'})

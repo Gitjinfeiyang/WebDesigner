@@ -1,7 +1,7 @@
 <template>
   <div class="my-template">
     <div class="width-limit">
-      <template-preview v-for="template in templates" :template="template" :key="template.id"></template-preview>
+      <template-preview v-for="template in templates" type="private" :template="template" :key="template.id"></template-preview>
       <p class="no-template" v-if="templates.length<=0"> <i class="iconfont">&#xe61e;</i>模板库空空如也</p>
       <div class="button-wrapper"  v-if="templates.length<=0"><input type="button" class="yellow-button" value="去模板市场选择一个" @click="goTo"/></div>
     </div>
@@ -21,9 +21,14 @@
         created(){
             this.getUserTemplates()
         },
+        computed:{
+          userId(){
+              return this.$store.state.userId;
+          }
+        },
         methods:{
           getUserTemplates(){
-              API.findUserTemplates(51)
+              API.findUserTemplates(this.userId)
                 .then((res) => {
                   this.templates=res.data;
                 })

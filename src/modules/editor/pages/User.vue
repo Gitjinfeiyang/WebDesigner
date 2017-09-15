@@ -36,29 +36,43 @@
         qrImg: '',
         showQrImg: false,
         showPreviewButton: false,
-        userId:0,
       })
     },
     created(){
       this.checkShowPreviewButton();
       this.getUserInfo();
       this.findDefaultTemplate();
+
+//      API.test()
+//        .then((res) => {
+//
+//        })
+
+
+//      Notification.requestPermission((permission) => {
+//        console.log(permission)
+//      })
     },
     watch: {
       $route(){
         this.checkShowPreviewButton();
+        //初始化预览二维码
+        this.qrImg='';
       }
     },
     computed: {
       templateCode(){
         return this.$store.state.templateCode;
       },
+      userId(){
+          return this.$store.state.userId;
+      }
     },
     methods: {
       getUserInfo(){
-          localStorage.setItem('userid_edit',51);
-          this.userId=this.$store.state.userId=51;
-        API.getUserInfo(51)
+          console.log(this.userId)
+//        this.$store.state.userId=51
+        API.getUserInfo(this.userId)
           .then((res) => {
 
           })

@@ -16,6 +16,7 @@
 
 <script>
   import {API,IMGURL} from '../assets/getData';
+  import {route} from '../router/router'
 
     export default {
         data(){
@@ -25,19 +26,28 @@
           }
         },
         created(){
+//            this.initUrl()
           this.getArticles()
+        },
+        computed:{
+          userId(){
+              return this.$store.state.userId;
+          }
         },
         methods:{
             getArticles(){
               let articleIds = this.$route.query.source;
-              API.getArticles(51, articleIds)
+              API.getArticles(this.userId, articleIds)
                 .then((res) => {
                   this.list = res.data;
                 })
             },
             goTo(id){
-                this.$router.push({path:'/detail',query:{article:id}})
-            }
+                this.$router.push({name:route.DETAIL.name,query:{article:id}})
+            },
+          initUrl(){
+            this.$router.push({name:this.$route.name,query:{userId:this.userId}})
+          }
         }
     }
 </script>

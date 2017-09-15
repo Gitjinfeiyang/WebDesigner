@@ -11,17 +11,19 @@ import {API} from '../assets/getData';
   export default {
       data(){
         return({
-          info:{},
           userId:this.$store.state.userId,
         })
       },
       computed:{
         templateCode(){
             return this.$store.state.templateCode;
+        },
+        info(){
+            return this.$store.state.userInfo;
         }
       },
       created(){
-        this.getUserInfo()
+//          this.initUrl()
       },
       methods:{
         getUserInfo(){
@@ -29,6 +31,9 @@ import {API} from '../assets/getData';
               .then((res) => {
                 this.info=res.data;
               })
+        },
+        initUrl(){
+            this.$router.push({name:this.$route.name,query:{userId:this.userId}})
         }
       },
       components:Cards

@@ -17,11 +17,27 @@
 </template>
 
 <script>
+  import {API} from './assets/getData';
+
 export default {
   name: 'app',
+  created(){
+    this.getUserId()
+  },
   computed:{
       notification(){
           return this.$store.state.notification;
+      }
+  },
+  methods:{
+      getUserId(){
+          API.getUserId()
+            .then((res) => {
+              this.$store.state.userId=51
+            })
+            .catch((res) => {
+              this.$store.state.userId=51
+            })
       }
   }
 }

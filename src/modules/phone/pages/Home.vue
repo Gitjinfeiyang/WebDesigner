@@ -11,9 +11,17 @@
 <script>
   import {NavBottoms} from '../../editor/assets/getTemplate.js'
   export default {
+      created(){
+//        this.initUrl()
+      },
       computed:{
         templateCode(){
             return this.$store.state.templateCode;
+        }
+      },
+      methods:{
+        initUrl(){
+          this.$router.push({name:this.$route.name,query:{userId:this.userId}})
         }
       },
       components:NavBottoms
